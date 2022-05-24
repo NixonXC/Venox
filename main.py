@@ -14,9 +14,6 @@ import whois
 with open('db/database.json', 'r') as f:
     config = json.load(f)
 
-with open('db/watchlist.json', 'r+') as f:
-    onspo = json.load(f)
-
 AUTH = config['AUTH']
 
 intents = discord.Intents.all()
@@ -32,19 +29,15 @@ def urlify(s):
 @bot.command()
 async def help(ctx):
     await ctx.send('`Available commands:`')
-    em = discord.Embed(title='Available commands:', description='`a!finder <account name>` - Finds accounts for the given account name.', color=discord.Color.from_rgb(255,0,0))
-    em.add_field(name='`a!ping`', value='Returns the bot\'s latency.', inline=False)
-    em.add_field(name='`a!help`', value='Returns this message.', inline=False)
-    em.add_field(name='`a!whois <domain>`', value='Returns the public info for the given domain.', inline=False)
-    em.add_field(name='`a!tag <tag>`', value='Returns the tag\'s info.', inline=False)
-    em.add_field(name='`a!tags`', value='Returns a list of all the tags.', inline=False)
-    em.add_field(name='`a!taginfo`', value='Returns the info for the tag you are searched for.', inline=False)
-    em.add_field(name='`a!addtag <tag>`', value='Adds a tag to the database.', inline=False)
-    em.add_field(name='`a!deltag <tag>`', value='Removes a tag from the database.', inline=False)
-    em.add_field(name='`a!tagaddinfo <tag> <info>`', value='Adds information about an tag to the database.', inline=False)
-    em.add_field(name='`a!deltaginfo <tag>`', value='Delete information about an tag from the database.', inline=False)
-    em.add_field(name="`a!instagram <user>`, `a!instagram <user> <tag>`", value="Returns the instagram profile for the given user and tag.", inline=False)
+    em = discord.Embed(title='Available commands:', description='**List of all the commands | prefix: `a!`**', color=discord.Colour.blurple())
+    em.add_field(name='`help`', value='Returns this message.', inline=False)
+    em.add_field(name='`ping`', value='Returns the bot\'s latency.', inline=False)
+    em.add_field(name='`finder <name>`', value='Finds accounts for the given account name.', inline=False)
+    em.add_field(name='`ipwhois <ip>`', value='Returns information about the given IP address.', inline=False)
+    em.add_field(name='`whois <domain>`', value='Returns the public info for the given domain.', inline=False)
+    em.add_field(name="`instagram <name>`", value="Returns the instagram profile for the given user and tag.", inline=False)
     em.set_footer(text="This Bot is Made by NixonXC for educational purposes")
+    em.set_thumbnail(url="https://cdn.discordapp.com/attachments/717087150109879072/717087150109879072.png")
     await ctx.send(embed=em)
 
 @bot.command()
@@ -93,188 +86,6 @@ async def whois(ctx, domain):
 @bot.command()
 async def ping(ctx):
     await ctx.send(f'`{0}`'.format(bot.latency))
-
-@bot.command()
-async def tag(ctx, tag):
-    if tag == '':
-        await ctx.send('No tag entered')
-    else:
-        msg = await ctx.send('`Searching...`')
-        time.sleep(3)
-        if tag == '1':
-            await msg.edit(f"`{onspo['1']}`")
-        elif tag == '2':
-            await msg.edit(f"`{onspo['2']}`")
-        elif tag == '3':
-            await msg.edit(f"`{onspo['3']}`")
-        elif tag == '4':
-            await msg.edit(f"`{onspo['4']}`")
-        elif tag == '5':
-            await msg.edit(f"`{onspo['5']}`")
-        elif tag == '6':
-            await msg.edit(f"`{onspo['6']}`")
-        elif tag == '7':
-            await msg.edit(f"`{onspo['7']}`")
-        elif tag == '8':
-            await msg.edit(f"`{onspo['8']}`")
-        elif tag == '9':
-            await msg.edit(f"`{onspo['9']}`")
-
-@bot.command()
-async def taginfo(ctx, tag):
-    filename = 'db/infobase.json'
-    with open(filename, 'r') as f:
-        data = json.load(f)
-    if tag == None:
-        await ctx.send('No tag entered')
-    else:
-        msg = await ctx.send('`Searching...`')
-        time.sleep(3)
-        if tag == '1':
-            await msg.edit(f"{data['1']}")
-        elif tag == '2':
-            await msg.edit(f"{data['2']}")
-        elif tag == '3':
-            await msg.edit(f"{data['3']}")
-        elif tag == '4':
-            await msg.edit(f"{data['4']}")
-        elif tag == '5':
-            await msg.edit(f"{data['5']}")
-        elif tag == '6':
-            await msg.edit(f"{data['6']}")
-        elif tag == '7':
-            await msg.edit(f"{data['7']}")
-        elif tag == '8':
-            await msg.edit(f"{data['8']}")
-        elif tag == '9':
-            await msg.edit(f"{data['9']}")
-        elif tag not in data:
-            await msg.edit(f"`{tag}` is not a valid tag.")
-
-
-@bot.command()
-async def tags(ctx):
-    await ctx.send('`Available tags:`')
-    em = discord.Embed(title='Available tags:', description='`1`, `2` , `3`, `4`, `5`, `6`, `7`, `8`, `9`', color=discord.Colour.red())
-    await ctx.send(embed=em)
-
-@bot.command()
-async def addtag(ctx, tag, name):
-    filename = 'db/watchlist.json'
-    with open(filename, 'r') as f:
-        data = json.load(f)
-    if tag in data:
-        await ctx.send('Tag already exists')
-        return
-    if name in data:
-        await ctx.send('Name already exists')
-        return
-    if tag == None:
-        await ctx.send('No tag entered, correct usage: `a!addtag <tag> <name>`')
-        return
-    if name == None:
-        await ctx.send('No name entered, correct usage: `a!addtag <tag> <name>`')
-        return
-    else:
-        filename = 'db/watchlist.json'
-        with open(filename, 'r') as f:
-            data = json.load(f)
-        data[tag] = name
-        await ctx.send(f'Tag `{tag}` added with name `{name}`')
-        os.remove(filename)
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=4)
-        print(f"Created Tag: {tag} : {name}")
-
-@bot.command()
-async def addtaginfo(ctx, tag, info: str):
-    filename = 'db/infobase.json'
-    with open(filename, 'r') as f:
-        data = json.load(f)
-    if tag in data:
-        await ctx.send('Tag already exists')
-        return
-    if info == None:
-        await ctx.send('No info entered, correct usage: `a!addtaginfo <tag> <info>`')
-        return
-    if tag == None:
-        await ctx.send('No tag entered, correct usage: `a!addtaginfo <tag> <info>`')
-        return
-    else:
-        filename = 'db/infobase.json'
-        with open(filename, 'r') as f:
-            data = json.load(f)
-        data[tag] = info
-        await ctx.send(f'Info for tag `{tag}` added')
-        os.remove(filename)
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=4)
-        print(f"Created Info: `{tag}` : **{info}**")
-
-@addtaginfo.error
-async def addtaginfo_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('No tag or name entered, correct usage: `a!addtaginfo <tag> <info>`')
-    if isinstance(error, commands.NotOwner):
-        await ctx.send('You are not the owner of this bot')
-
-@bot.command()
-async def deltaginfo(ctx, tag):
-    if tag == None:
-        await ctx.send('No tag entered, correct usage: `a!deltag <tag>`')
-        return
-    else:
-        filename = 'db/infobase.json'
-        with open(filename, 'r') as f:
-            data = json.load(f)
-        del data[tag]
-        await ctx.send(f'Tag `{tag}` deleted')
-        os.remove(filename)
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=4)
-        print("Deleted tag " + tag)
-
-
-@deltaginfo.error
-async def deltaginfo_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('No tag entered, correct usage: `a!deltaginfo <tag>`')
-    if isinstance(error, commands.CommandInvokeError):
-        await ctx.send('Tag does not exist')
-    if isinstance(error, commands.NotOwner):
-        await ctx.send('You are not the owner of this bot')
-
-@addtag.error
-async def addtag_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('No tag or name entered, correct usage: `a!addtag <tag> <name>`')
-    if isinstance(error, commands.NotOwner):
-        await ctx.send('You are not the owner of this bot')
-
-@bot.command()
-async def deltag(ctx, tag):
-    if tag == None:
-        await ctx.send('No tag entered, correct usage: `a!deltag <tag>`')
-        return
-    else:
-        filename = 'db/watchlist.json'
-        with open(filename, 'r') as f:
-            data = json.load(f)
-        del data[tag]
-        await ctx.send(f'Tag `{tag}` deleted')
-        os.remove(filename)
-        with open(filename, 'w') as f:
-            json.dump(data, f, indent=4)
-        print("Deleted tag " + tag)
-
-@deltag.error
-async def deltag_error(ctx, error):
-    if isinstance(error, commands.MissingRequiredArgument):
-        await ctx.send('No tag entered, correct usage: `a!deltag <tag>`')
-    if isinstance(error, commands.CommandInvokeError):
-        await ctx.send('Tag does not exist')
-    if isinstance(error, commands.NotOwner):
-        await ctx.send('You are not the owner of this bot')
 
 async def get_ip_info(ip):
     url = f"http://ip-api.com/json/{ip}"
