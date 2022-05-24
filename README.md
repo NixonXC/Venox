@@ -9,6 +9,14 @@ Maintained by NixonXC
 `py-cord`
 `aiohttp`
 
+# Commands
+
+<h3>Slash Commands and Prefix Commands Supported </h3>
+
+**PREFIX:** `a!`
+
+`help` `ping`  `instagram <user>`  `whois <domain>`  `ipwhois <ip>`  `finder <user>`
+
 # How to Use
 
 First replace your AUTH's value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a>
