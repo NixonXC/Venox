@@ -1,4 +1,3 @@
-instagramy
 py-cord
-whois-python
+python-whois
 aiohttp
