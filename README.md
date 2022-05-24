@@ -11,8 +11,16 @@ Maintained by NixonXC
 
 # How to Use
 
-First replace your AUTH's value with your token in db/database.json
-then run the main file (main.py)
+First replace your AUTH's value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database<a>.json
+
+```json
+{
+    "AUTH": "TOKEN"
+}
+```
+
+then run the main file (main.py
+
 And it should print:
 ```py
 Bot is ready!
