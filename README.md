@@ -19,7 +19,7 @@ Maintained by NixonXC
 
 # How to Use
 
-First replace your AUTH's value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a>
+First replace AUTH's value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a>
 
 ```json
 {
