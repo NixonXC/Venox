@@ -1,0 +1,4 @@
+instagramy
+py-cord
+whois-python
+aiohttp
