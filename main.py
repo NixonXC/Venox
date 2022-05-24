@@ -30,6 +30,24 @@ def urlify(s):
     return s
 
 @bot.command()
+async def help(ctx):
+    await ctx.send('`Available commands:`')
+    em = discord.Embed(title='Available commands:', description='`a!finder <account name>` - Finds accounts for the given account name.', color=discord.Color.from_rgb(255,0,0))
+    em.add_field(name='`a!ping`', value='Returns the bot\'s latency.', inline=False)
+    em.add_field(name='`a!help`', value='Returns this message.', inline=False)
+    em.add_field(name='`a!whois <domain>`', value='Returns the public info for the given domain.', inline=False)
+    em.add_field(name='`a!tag <tag>`', value='Returns the tag\'s info.', inline=False)
+    em.add_field(name='`a!tags`', value='Returns a list of all the tags.', inline=False)
+    em.add_field(name='`a!taginfo`', value='Returns the info for the tag you are searched for.', inline=False)
+    em.add_field(name='`a!addtag <tag>`', value='Adds a tag to the database.', inline=False)
+    em.add_field(name='`a!deltag <tag>`', value='Removes a tag from the database.', inline=False)
+    em.add_field(name='`a!tagaddinfo <tag> <info>`', value='Adds information about an tag to the database.', inline=False)
+    em.add_field(name='`a!deltaginfo <tag>`', value='Delete information about an tag from the database.', inline=False)
+    em.add_field(name="`a!instagram <user>`, `a!instagram <user> <tag>`", value="Returns the instagram profile for the given user and tag.", inline=False)
+    em.set_footer(text="This Bot is Made by NixonXC for educational purposes")
+    await ctx.send(embed=em)
+
+@bot.command()
 async def finder(ctx, acc):
     if acc == '':
         await ctx.send('No account name entered')
@@ -75,24 +93,6 @@ async def whois(ctx, domain):
 @bot.command()
 async def ping(ctx):
     await ctx.send(f'`{0}`'.format(bot.latency))
-
-@bot.command()
-async def help(ctx):
-    await ctx.send('`Available commands:`')
-    em = discord.Embed(title='Available commands:', description='`a!finder <account name>` - Finds accounts for the given account name.', color=discord.Colour.red())
-    em.add_field(name='`a!ping`', value='Returns the bot\'s latency.', inline=False)
-    em.add_field(name='`a!help`', value='Returns this message.', inline=False)
-    em.add_field(name='`a!whois <domain>`', value='Returns the public info for the given domain.', inline=False)
-    em.add_field(name='`a!tag <tag>`', value='Returns the tag\'s info.', inline=False)
-    em.add_field(name='`a!tags`', value='Returns a list of all the tags.', inline=False)
-    em.add_field(name='`a!taginfo`', value='Returns the info for the tag you are searched for.', inline=False)
-    em.add_field(name='`a!addtag <tag>`', value='Adds a tag to the database.', inline=False)
-    em.add_field(name='`a!deltag <tag>`', value='Removes a tag from the database.', inline=False)
-    em.add_field(name='`a!tagaddinfo <tag> <info>`', value='Adds information about an tag to the database.', inline=False)
-    em.add_field(name='`a!deltaginfo <tag>`', value='Delete information about an tag from the database.', inline=False)
-    em.add_field(name="`a!instagram <user>`, `a!instagram <user> <tag>`", value="Returns the instagram profile for the given user and tag.", inline=False)
-    em.set_footer(text="This Bot is Made by NixonXC for educational purposes")
-    await ctx.send(embed=em)
 
 @bot.command()
 async def tag(ctx, tag):
@@ -284,23 +284,30 @@ async def get_ip_info(ip):
 
 @bot.command()
 async def ipwhois(ctx, ip):
-    ip_info = await get_ip_info(ip)
-    em = discord.Embed(title=f"{ip}", color=discord.Colour.blurple())
-    em.add_field(name="IP", value=f"`{ip_info['query']}`", inline=False)
-    em.add_field(name="ISP", value=f"`{ip_info['isp']}`", inline=False)
-    em.add_field(name="ASN", value=f"`{ip_info['as']}`", inline=False)
-    em.add_field(name="Country", value=f"`{ip_info['country']}`", inline=False)
-    em.add_field(name="Region", value=f"`{ip_info['regionName']}`", inline=False)
-    em.add_field(name="City", value=f"`{ip_info['city']}`", inline=False)
-    em.add_field(name="Zip", value=f"`{ip_info['zip']}`", inline=False)
-    em.add_field(name="Timezone", value=f"`{ip_info['timezone']}`", inline=False)
-    em.add_field(name="Latitude", value=f"`{ip_info['lat']}`", inline=False)
-    em.add_field(name="Longitude", value=f"`{ip_info['lon']}`", inline=False)
-    em.add_field(name="ISP", value=f"`{ip_info['isp']}`", inline=False)
-    em.add_field(name="Organization", value=f"`{ip_info['org']}`", inline=False)
-    em.add_field(name="Note", value=f"**ALL THIS INFORMATION IS PUBLIC AND AVAILABLE ON THE INTERNET**", inline=False)
-    em.set_footer(text=f"THIS TOOL IS MADE FOR EDUCATIONAL PURPOSES ONLY")
-    await ctx.send(embed=em)
+    if ip == "127.0.0.1":
+        await ctx.send("Sorry, but I can't look up localhost")
+        return
+    if ip == None:
+        await ctx.send("No IP entered, correct usage: `a!ipwhois <ip>`")
+        return
+    else:
+        ip_info = await get_ip_info(ip)
+        em = discord.Embed(title=f"{ip}", color=discord.Colour.blurple())
+        em.add_field(name="IP", value=f"`{ip_info['query']}`", inline=False)
+        em.add_field(name="ISP", value=f"`{ip_info['isp']}`", inline=False)
+        em.add_field(name="ASN", value=f"`{ip_info['as']}`", inline=False)
+        em.add_field(name="Country", value=f"`{ip_info['country']}`", inline=False)
+        em.add_field(name="Region", value=f"`{ip_info['regionName']}`", inline=False)
+        em.add_field(name="City", value=f"`{ip_info['city']}`", inline=False)
+        em.add_field(name="Zip", value=f"`{ip_info['zip']}`", inline=False)
+        em.add_field(name="Timezone", value=f"`{ip_info['timezone']}`", inline=False)
+        em.add_field(name="Latitude", value=f"`{ip_info['lat']}`", inline=False)
+        em.add_field(name="Longitude", value=f"`{ip_info['lon']}`", inline=False)
+        em.add_field(name="ISP", value=f"`{ip_info['isp']}`", inline=False)
+        em.add_field(name="Organization", value=f"`{ip_info['org']}`", inline=False)
+        em.add_field(name="Note", value=f"**ALL THIS INFORMATION IS PUBLIC AND AVAILABLE ON THE INTERNET**", inline=False)
+        em.set_footer(text=f"THIS TOOL IS MADE FOR EDUCATIONAL PURPOSES ONLY")
+        await ctx.send(embed=em)
 
 @ipwhois.error
 async def ipwhois_error(ctx, error):
