@@ -90,11 +90,11 @@ async def help(ctx):
     em.add_field(name='`a!deltag <tag>`', value='Removes a tag from the database.', inline=False)
     em.add_field(name='`a!tagaddinfo <tag> <info>`', value='Adds information about an tag to the database.', inline=False)
     em.add_field(name='`a!deltaginfo <tag>`', value='Delete information about an tag from the database.', inline=False)
+    em.add_field(name="`a!instagram <user>`, `a!instagram <user> <tag>`", value="Returns the instagram profile for the given user and tag.", inline=False)
     em.set_footer(text="This Bot is Made by NixonXC for educational purposes")
     await ctx.send(embed=em)
 
 @bot.command()
-@discord.is_owner()
 async def tag(ctx, tag):
     if tag == '':
         await ctx.send('No tag entered')
@@ -121,7 +121,6 @@ async def tag(ctx, tag):
             await msg.edit(f"`{onspo['9']}`")
 
 @bot.command()
-@discord.is_owner()
 async def taginfo(ctx, tag):
     filename = 'db/infobase.json'
     with open(filename, 'r') as f:
@@ -154,14 +153,12 @@ async def taginfo(ctx, tag):
 
 
 @bot.command()
-@discord.is_owner()
 async def tags(ctx):
     await ctx.send('`Available tags:`')
     em = discord.Embed(title='Available tags:', description='`1`, `2` , `3`, `4`, `5`, `6`, `7`, `8`, `9`', color=discord.Colour.red())
     await ctx.send(embed=em)
 
 @bot.command()
-@discord.is_owner()
 async def addtag(ctx, tag, name):
     filename = 'db/watchlist.json'
     with open(filename, 'r') as f:
@@ -190,7 +187,6 @@ async def addtag(ctx, tag, name):
         print(f"Created Tag: {tag} : {name}")
 
 @bot.command()
-@discord.is_owner()
 async def addtaginfo(ctx, tag, info: str):
     filename = 'db/infobase.json'
     with open(filename, 'r') as f:
@@ -223,7 +219,6 @@ async def addtaginfo_error(ctx, error):
         await ctx.send('You are not the owner of this bot')
 
 @bot.command()
-@discord.is_owner()
 async def deltaginfo(ctx, tag):
     if tag == None:
         await ctx.send('No tag entered, correct usage: `a!deltag <tag>`')
@@ -257,7 +252,6 @@ async def addtag_error(ctx, error):
         await ctx.send('You are not the owner of this bot')
 
 @bot.command()
-@discord.is_owner()
 async def deltag(ctx, tag):
     if tag == None:
         await ctx.send('No tag entered, correct usage: `a!deltag <tag>`')
