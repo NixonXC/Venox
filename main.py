@@ -276,17 +276,48 @@ async def deltag_error(ctx, error):
     if isinstance(error, commands.NotOwner):
         await ctx.send('You are not the owner of this bot')
 
+async def get_ip_info(ip):
+    url = f"http://ip-api.com/json/{ip}"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            return await resp.json()
+
+@bot.command()
+async def ipwhois(ctx, ip):
+    ip_info = await get_ip_info(ip)
+    em = discord.Embed(title=f"{ip}", color=discord.Colour.blurple())
+    em.add_field(name="IP", value=f"`{ip_info['query']}`", inline=False)
+    em.add_field(name="ISP", value=f"`{ip_info['isp']}`", inline=False)
+    em.add_field(name="ASN", value=f"`{ip_info['as']}`", inline=False)
+    em.add_field(name="Country", value=f"`{ip_info['country']}`", inline=False)
+    em.add_field(name="Region", value=f"`{ip_info['regionName']}`", inline=False)
+    em.add_field(name="City", value=f"`{ip_info['city']}`", inline=False)
+    em.add_field(name="Zip", value=f"`{ip_info['zip']}`", inline=False)
+    em.add_field(name="Timezone", value=f"`{ip_info['timezone']}`", inline=False)
+    em.add_field(name="Latitude", value=f"`{ip_info['lat']}`", inline=False)
+    em.add_field(name="Longitude", value=f"`{ip_info['lon']}`", inline=False)
+    em.add_field(name="ISP", value=f"`{ip_info['isp']}`", inline=False)
+    em.add_field(name="Organization", value=f"`{ip_info['org']}`", inline=False)
+    em.add_field(name="Note", value=f"**ALL THIS INFORMATION IS PUBLIC AND AVAILABLE ON THE INTERNET**", inline=False)
+    em.set_footer(text=f"THIS TOOL IS MADE FOR EDUCATIONAL PURPOSES ONLY")
+    await ctx.send(embed=em)
+
+@ipwhois.error
+async def ipwhois_error(ctx, error):
+    if isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send('**No ip entered, correct usage: `a!ipwhois <ip>`**')
+
 # make a instagram info command
 @bot.command()
 async def instagram(ctx, user):
     if user == None:
-        await ctx.send('No user entered, correct usage: `a!instagram <user>`')
+        await ctx.send('**No user entered, correct usage: `a!instagram <user>`**')
         return
     else:
         url = f"https://www.instagram.com/{user}/channel/?__a=1"
         headers = {'User-Agent': 'Mozilla'}
         async with aiohttp.ClientSession() as session:
-            async with session.get(url, header=headers) as r:
+            async with session.get(url) as r:
                 data = await r.json()
         try:
             name = (f"`{data['graphql']['user']['full_name']}`")
