@@ -16,7 +16,7 @@ Maintained by NixonXC
 
 **PREFIX:** `a!`
 
-`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>`
+`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>`
 
 # How to Use
 
