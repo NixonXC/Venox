@@ -1,3 +1,4 @@
 {
-    "AUTH": "TOKEN"
+    "AUTH": "TOKEN
+    "PREFIX": "v!"
 }
