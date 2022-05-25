@@ -21,11 +21,13 @@ Maintained by NixonXC
 # How to Use
 
 First replace `AUTH`'s value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a>
-You can also change the bot's prefix by replacing `PREFIX`'s value with your desired prefix.
+You can also change the bot's `PREFIX` and `STREAM_URL` in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a> Changing the Prefix will also change the prefix information on commands, status etc.
+
 ```json
 {
     "AUTH": "TOKEN",
-    "PREFIX": "v!"
+    "PREFIX": "v!",
+    "STREAM_URL": "https://github.com/NixonXC/Veno"
 }
 ```
 
