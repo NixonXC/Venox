@@ -8,6 +8,7 @@ with open('db/database.json', 'r') as f:
 
 AUTH = config['AUTH']
 pref = config['PREFIX']
+STREAM = config['STREAM_URL']
 
 intents = discord.Intents.all()
 
@@ -32,6 +33,6 @@ async def on_ready():
     print(f'Logged in as: {bot.user.name}')
     print(f'With ID: {bot.user.id}')
     print('------')
-    await bot.change_presence(status=discord.Status.streaming, activity=discord.Streaming(name='a!help | Made For Educational Purposes', url='https://www.youtube.com/watch?v=1XzY2ij_vL4'))
+    await bot.change_presence(activity=discord.Streaming(name=f"{pref}help | Made For Educational Purposes", url=STREAM))
 
 bot.run(AUTH)
