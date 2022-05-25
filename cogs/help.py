@@ -1,5 +1,11 @@
 import discord
 from discord.ext import bridge, commands
+import json
+
+with open('db/database.json', 'r') as f:
+    config = json.load(f)
+
+pref = config['PREFIX']
 
 class help(commands.Cog):
     def __init__(self, bot):
@@ -22,7 +28,7 @@ class help(commands.Cog):
             send = ctx.respond
         except:
             send = ctx.reply
-        em = discord.Embed(title='Help:', description='**List of all the commands | prefix: `a!`**', color=discord.Colour.blurple())
+        em = discord.Embed(title='Help:', description=f'**List of all the commands | prefix: `{pref}`**', color=discord.Colour.blurple())
         em.add_field(name=f'help', value='Returns this message.', inline=False)
         em.add_field(name=f'ping', value='Returns the bot\'s latency.', inline=False)
         em.add_field(name=f'finder <name>', value='Finds accounts for the given account name.', inline=False)

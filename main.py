@@ -7,12 +7,13 @@ with open('db/database.json', 'r') as f:
     config = json.load(f)
 
 AUTH = config['AUTH']
+pref = config['PREFIX']
 
 intents = discord.Intents.all()
 
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='a!', intents=intents)
+bot = commands.Bot(command_prefix=pref, intents=intents)
 bot.remove_command('help')
 
 async def loop():
