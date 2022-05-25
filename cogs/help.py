@@ -26,10 +26,10 @@ class help(commands.Cog):
         em.add_field(name='`ping`', value='Returns the bot\'s latency.', inline=False)
         em.add_field(name='`finder <name>`', value='Finds accounts for the given account name.', inline=False)
         em.add_field(name='`ipwhois <ip>`', value='Returns information about the given IP address.', inline=False)
-        em.add_field(name='`whois <domain>`', value='Returns the public info for the given domain.', inline=False)
-        em.add_field(name="`instagram <name>`", value="Returns the instagram profile for the given user and tag.", inline=False)
+        em.add_field(name='`whois <domain>`', value='Returns the information about the  given domain.', inline=False)
+        em.add_field(name="`phonewhois <phone-number>`", value="Returns information about the given phone number.", inline=False)
         em.set_footer(text="This Bot is Made by NixonXC for educational purposes")
-        em.set_thumbnail(url="https://cdn.discordapp.com/attachments/717087150109879072/717087150109879072.png")
+        em.set_thumbnail(url="https://images-ext-1.discordapp.net/external/gB4yj0jFMz0c0yHmHTihGRawp_kP65SpLhEbZg5s0So/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/974012262442483752/d56b2bc1efe33b27fbc868c7fad87490.png?width=356&height=356")
         await send(embed=em)
 
 def setup(bot):

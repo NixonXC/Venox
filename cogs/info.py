@@ -1,11 +1,11 @@
-from cmath import inf
-from logging import info
 import discord
-import asyncio
 import aiohttp
 import whois
+import phonenumbers
+from phonenumbers import geocoder, carrier
 from discord.ext import bridge, commands
 import re
+from phonenumbers import timezone
 
 async def get_ip_info(ip):
     url = f"http://ip-api.com/json/{ip}"
@@ -22,43 +22,34 @@ class info(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @bridge.bridge_command(pass_context=True)
-    async def instagram(self, ctx: bridge.BridgeContext, user):
-        """Returns the instagram profile public information for the given user and tag."""
+    @bridge.bridge_command()
+    async def phonewhois(self, ctx, phone):
         try:
             send = ctx.respond
         except:
             send = ctx.reply
-        if user == None:
-            await ctx.respond('**No user entered, correct usage: `a!instagram <user>`**')
-            return
-        else:
-            url = f"https://www.instagram.com/{user}/channel/?__a=1"
-            headers = {'User-Agent': 'Mozilla'}
-            async with aiohttp.ClientSession() as session:
-                async with session.get(url) as r:
-                    data = await r.json()
-            try:
-                name = (f"`{data['graphql']['user']['full_name']}`")
-            except:
-                name = (f"`{data['graphql']['user']['username']}`")
-            try:
-                bio = (f"`{data['graphql']['user']['biography']}`")
-            except:
-                bio = (f"`No Bio`")
-            try:
-                followers = (f"`{data['graphql']['user']['edge_followed_by']['count']}`")
-            except:
-                followers = (f"`None`")
-            try:
-                following = (f"`{data['graphql']['user']['edge_follow']['count']}`")
-            except:
-                following = (f"`None`")
-            embed = discord.Embed(title=name, description=bio, color=0x00ff00)
-            embed.add_field(name="Followers", value=followers, inline=True)
-            embed.add_field(name="Following", value=following, inline=True)
-            await send(embed=embed)
-
+        x = phonenumbers.parse(f"+{phone}", None)
+        zone = timezone.time_zones_for_number(x)
+        car = carrier.name_for_number(x, 'en')
+        region = geocoder.description_for_number(x, 'en')
+        valid = phonenumbers.is_valid_number(x)
+        em = discord.Embed(title=f"Phone Number Info", color=discord.Colour.blurple())
+        em.add_field(name="Phone Number", value=f"`{phone}`")
+        em.add_field(name="Valid", value=f"`{valid}`", inline=False)
+        try:
+            em.add_field(name="Timezone", value=f"`{zone}`", inline=False)
+        except:
+            em.add_field(name="Timezone", value="`Unknown`", inline=False)
+        try:
+            em.add_field(name="Carrier", value=f"`{car}`", inline=False)
+        except:
+            em.add_field(name="Carrier", value="`Unknown`", inline=False)
+        try:
+            em.add_field(name="Region", value=f"`{region}`", inline=False)
+        except:
+            em.add_field(name="Region", value="`Unknown`", inline=False)
+        em.set_footer(text="All this information can be found on the internet.")
+        await send(embed=em)
 
     @bridge.bridge_command()
     async def ipwhois(self, ctx: bridge.BridgeContext, ip):
