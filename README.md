@@ -7,6 +7,7 @@ Maintained by NixonXC
 
 `python-whois`
 `py-cord`
+`phonenumbers`
 `aiohttp`
 
 # Commands
@@ -15,7 +16,7 @@ Maintained by NixonXC
 
 **PREFIX:** `a!`
 
-`help` `ping`  `instagram <user>`  `whois <domain>`  `ipwhois <ip>`  `finder <user>`
+`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>`
 
 # How to Use
 
