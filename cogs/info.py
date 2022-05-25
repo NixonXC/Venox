@@ -1,5 +1,6 @@
 import discord
 import aiohttp
+from sqlalchemy import desc
 import whois
 import phonenumbers
 from phonenumbers import geocoder, carrier
