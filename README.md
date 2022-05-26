@@ -21,7 +21,7 @@ Maintained by NixonXC
 # How to Use
 
 First replace `AUTH`'s value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a>
-You can also change the bot's `PREFIX`,  `STREAM_URL` and the `AUTHOR` in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a> Changing the Prefix And AUTHOR will also change the information on commands, status etc.
+You can also change the bot's `PREFIX`,  `STREAM_URL` and the `AUTHOR` in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a> Changing the Prefix And Author will also change the information on commands, status etc.
 
 ```json
 {
