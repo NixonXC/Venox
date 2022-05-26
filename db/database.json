@@ -1,5 +1,6 @@
 {
     "AUTH": "TOKEN"
     "PREFIX": "v!",
-    "STREAM_URL": "https://twitch.tv/nixonxc/"
+    "STREAM_URL": "https://twitch.tv/nixonxc/",
+    "AUTHOR": "Nixon The Dev"
 }
