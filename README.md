@@ -16,7 +16,7 @@ Maintained by NixonXC
 
 **DEFAULT PREFIX:** `v!`
 
-`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers`
+`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers <domain>`
 
 # How to Use
 
