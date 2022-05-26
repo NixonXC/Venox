@@ -39,7 +39,7 @@ class help(commands.Cog):
         em.add_field(name=f'whois <domain>', value='Returns the information about the  given domain.', inline=False)
         em.add_field(name=f"phonewhois <phone-number>", value="Returns information about the given phone number.", inline=False)
         em.add_field(name=f"checkemail <email>", value="Checks if an email is valid or invalid.", inline=False)
-        em.add_field(name=f"nameservers <domain>", value="Returns the nameservers of the mnetioned domain.", inline=False)
+        em.add_field(name=f"nameservers <domain>", value="Returns the nameservers of the mentioned domain.", inline=False)
         em.set_footer(text=f"This Bot is Made by {AUTHOR} for educational purposes")
         em.set_thumbnail(url="https://images-ext-1.discordapp.net/external/gB4yj0jFMz0c0yHmHTihGRawp_kP65SpLhEbZg5s0So/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/974012262442483752/d56b2bc1efe33b27fbc868c7fad87490.png?width=356&height=356")
         await send(embed=em)
