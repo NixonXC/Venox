@@ -94,15 +94,17 @@ class info(commands.Cog):
             await send(embed=em)
 
     @bridge.bridge_command()
-    async def whois(self, ctx: bridge.BridgeContext, domain):
+    async def whois(self, ctx, domain):
         """Get the WHOIS information of a domain"""
         try:
             send = ctx.respond
         except:
             send = ctx.reply
+        nam = domain.split('.')[1]
         w = whois.whois(domain)
         dom = discord.Embed(title=f"{domain}", description="All The Found Public Info", color=discord.Colour.blurple())
         dom.add_field(name="Domain Name:", value=f"`{w.domain_name}`", inline=False)
+        dom.add_field(name="Domain", value=f"`{nam}`", inline=False)
         dom.add_field(name="Registrar:", value=f"`{w.registrar}`", inline=False)
         dom.add_field(name="Abuse Report Email:", value=f"`{w.emails}`", inline=False)
         dom.add_field(name="Name", value=f"`{w.name}`", inline=False)
@@ -165,5 +167,22 @@ class info(commands.Cog):
                     await send(embed=em)
             except:
                 await ctx.respond('404')
+
+    @bridge.bridge_command()
+    async def nameservers(self, ctx, domain):
+        """Returns the nameservers of the domain"""
+        try:
+            send = ctx.respond
+        except:
+            send = ctx.reply
+        w = whois.whois(domain)
+        ns1 = w["name_servers"]
+        em = discord.Embed(title=f"Name Servers", description=f"Detected Name Servers", color=discord.Colour.blurple())
+        em.add_field(name="Domain", value=f"`{w.domain_name}`", inline=False)
+        em.add_field(name="Registrar", value=f"`{w.registrar}`", inline=False)
+        em.add_field(name="Name Servers", value=f"`{ns1}`", inline=False)
+        em.set_thumbnail(url=f'https://images-ext-1.discordapp.net/external/gB4yj0jFMz0c0yHmHTihGRawp_kP65SpLhEbZg5s0So/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/974012262442483752/d56b2bc1efe33b27fbc868c7fad87490.png?width=356&height=356')
+        await send(embed=em)
+
 def setup(bot):
   bot.add_cog(info(bot))

@@ -7,14 +7,15 @@ with open('db/database.json', 'r') as f:
     config = json.load(f)
 
 AUTH = config['AUTH']
-pref = config['PREFIX']
+PREFIX = config['PREFIX']
 STREAM = config['STREAM_URL']
+AUTHOR = config['AUTHOR']
 
 intents = discord.Intents.all()
 
 intents.message_content = True
 
-bot = commands.Bot(command_prefix=pref, intents=intents)
+bot = commands.Bot(command_prefix=PREFIX, intents=intents)
 bot.remove_command('help')
 
 async def loop():
@@ -33,6 +34,6 @@ async def on_ready():
     print(f'Logged in as: {bot.user.name}')
     print(f'With ID: {bot.user.id}')
     print('------')
-    await bot.change_presence(activity=discord.Streaming(name=f"{pref}help | Made For Educational Purposes", url=STREAM))
+    await bot.change_presence(activity=discord.Streaming(name=f"{PREFIX}help | By {AUTHOR}, Made For Educational Purposes", url=STREAM))
 
 bot.run(AUTH)

@@ -16,18 +16,19 @@ Maintained by NixonXC
 
 **DEFAULT PREFIX:** `v!`
 
-`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>`
+`help` `ping` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers`
 
 # How to Use
 
 First replace `AUTH`'s value with your token in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a>
-You can also change the bot's `PREFIX` and `STREAM_URL` in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a> Changing the Prefix will also change the prefix information on commands, status etc.
+You can also change the bot's `PREFIX`,  `STREAM_URL` and the `AUTHOR` in <a href="https://github.com/NixonXC/Veno/blob/main/db/database.json">db/database.json<a> Changing the Prefix And AUTHOR will also change the information on commands, status etc.
 
 ```json
 {
     "AUTH": "TOKEN",
     "PREFIX": "v!",
-    "STREAM_URL": "https://github.com/NixonXC/Veno"
+    "STREAM_URL": "https://github.com/NixonXC/Veno",
+    "AUTHOR": "NixonXC"
 }
 ```
 
