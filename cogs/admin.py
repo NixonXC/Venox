@@ -1,8 +1,6 @@
 import discord
 from discord.ext import bridge, commands
 import json
-import sys
-import os
 import contextlib
 import io
 
