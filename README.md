@@ -1,4 +1,4 @@
-# Veno
+# Venox
 
 Easy to use information gathering bot
 Maintained by NixonXC
