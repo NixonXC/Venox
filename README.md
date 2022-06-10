@@ -1,7 +1,8 @@
 # Venox
 
 Easy to use information gathering bot
-Maintained by NixonXC
+Maintained by NixonXC<br>
+<h3><a href="https://venoxbot.tk/">venoxbot.tk</a></h3>
 
 # Requirements
 
