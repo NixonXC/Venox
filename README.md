@@ -17,7 +17,7 @@ Maintained by NixonXC<br>
 
 **DEFAULT PREFIX:** `v!`
 
-`help` `ping` `eval` `prefix <new-prefix>` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers <domain>`
+`help` `ping` `eval` `prefix <new-prefix>` `whois <domain-name>` `ipwhois <ip-address>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers <domain>`
 
 # How to Use
 
