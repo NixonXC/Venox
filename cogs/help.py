@@ -33,7 +33,7 @@ class help(commands.Cog):
         em.add_field(name=f'help', value='Returns this message.', inline=False)
         em.add_field(name=f'ping', value='Returns the bot\'s latency.', inline=False)
         em.add_field(name=f'eval', value='Execute code via an command.', inline=False)
-        em.add_field(name=f'prefix', value='Change the bot\'s prefix.', inline=False)
+        em.add_field(name=f'prefix <new-prefix>', value='Change the bot\'s prefix.', inline=False)
         em.add_field(name=f'finder <name>', value='Finds accounts for the given account name.', inline=False)
         em.add_field(name=f'ipwhois <ip>', value='Returns information about the given IP address.', inline=False)
         em.add_field(name=f'whois <domain>', value='Returns the information about the  given domain.', inline=False)

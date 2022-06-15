@@ -35,7 +35,6 @@ class admin(commands.Cog):
         config['PREFIX'] = prefix
         with open('db/database.json', 'w') as f:
             json.dump(config, f, indent=4)
-        unup = config['PREFIX']
         await send(f"**Prefix changed to `{prefix}` | You will need to restart the bot for it to take effect.**")
 
 def setup(bot):

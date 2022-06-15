@@ -1,4 +1,4 @@
-py-cord
-python-whois
-aiohttp
-phonenumbers
+py-cord==2.0.0rc1
+python-whois==2.0.0rc1
+aiohttp==3.8.1
+phonenumbers==8.12.50

@@ -30,9 +30,13 @@ bot.loop.create_task(loop())
 
 @bot.event
 async def on_ready():
+    print('------')
     print('Bot is ready!')
     print(f'Logged in as: {bot.user.name}')
     print(f'With ID: {bot.user.id}')
+    print(f'PREFIX: {PREFIX}')
+    print(f'AUTHOR: {AUTHOR}')
+    print(f'STREAM: {STREAM}')
     print('------')
     await bot.change_presence(activity=discord.Streaming(name=f"{PREFIX}help | By {AUTHOR}, Made For Educational Purposes", url=STREAM))
 
