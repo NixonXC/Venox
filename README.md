@@ -38,6 +38,7 @@ You can also change the bot's `PREFIX`,  `STREAM_URL` and the `AUTHOR` in <a hre
 then run the main file (main.py
 
 <h3>Output:</h3>
+    
 ```py
 [INFO] SUCCESSFULLY LOADED info cog!
 [INFO] SUCCESSFULLY LOADED admin cog!
@@ -51,7 +52,6 @@ AUTHOR: AUTHOR
 STREAM: STREAM_URL
 ------
 ```
-
 
 # Example
 
