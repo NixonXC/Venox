@@ -2,6 +2,7 @@
 
 Easy to use information gathering bot
 Maintained by NixonXC<br>
+
 <h3><a href="https://venoxbot.tk/">venoxbot.tk</a></h3>
 
 # Requirements
@@ -19,7 +20,7 @@ Install via `pip install -r requirements.txt`
 
 **DEFAULT PREFIX:** `v!`
 
-`help` `ping` `eval` `prefix <new-prefix>` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers <domain>`
+`help` `ping` `eval` `prefix <new-prefix>` `whois <domain>` `ipwhois <ip>` `finder <user>` `phonewhois <phone-number>` `checkemail <email>` `nameservers <domain>` `website` `github` `invite`
 
 # How to Use
 
@@ -53,9 +54,10 @@ STREAM: STREAM_URL
 ------
 ```
 
-# Example
+# Updates:
 
-![image](https://user-images.githubusercontent.com/81410474/173798814-093d0988-f793-4155-bc32-3632e5d4112b.png)
+Added new commands and reworked the help command
+
 
 # Note
 

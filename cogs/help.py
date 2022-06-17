@@ -23,6 +23,36 @@ class help(commands.Cog):
         await send(embed=em)
 
     @bridge.bridge_command(pass_context=True)
+    async def invite(self, ctx: bridge.BridgeContext):
+        """Returns the bot's invite link."""
+        try:
+            send = ctx.respond
+        except:
+            send = ctx.reply
+        em = discord.Embed(title="Invite Link", description=f"**[Click Here](https://discord.com/api/oauth2/authorize?client_id={self.bot.user.id}&permissions=8&scope=bot%20applications.commands)**", color=discord.Colour.blurple())
+        await send(embed=em)
+
+    @bridge.bridge_command(pass_context=True)
+    async def github(self, ctx: bridge.BridgeContext):
+        """Returns the bot's github link/source code."""
+        try:
+            send = ctx.respond
+        except:
+            send = ctx.reply
+        em = discord.Embed(title="Github Link",description=f"**[Click Here](https://github.com/NixonXC/Veno-bot)**", color=discord.Colour.blurple())
+        await send(embed=em)
+
+    @bridge.bridge_command(pass_context=True)
+    async def website(self, ctx: bridge.BridgeContext):
+        """Official Website"""
+        try:
+            send = ctx.respond
+        except:
+            send = ctx.reply
+        em = discord.Embed(title="Website Link",description=f"**[Click Here](https://venoxbot.tk/)**", color=discord.Colour.blurple())
+        await send(embed=em)
+
+    @bridge.bridge_command(pass_context=True)
     async def help(self, ctx):
         """Returns the help menu."""
         try:
@@ -30,16 +60,9 @@ class help(commands.Cog):
         except:
             send = ctx.reply
         em = discord.Embed(title='Help:', description=f'**List of all the commands | prefix: `{PREFIX}`**', color=discord.Colour.blurple())
-        em.add_field(name=f'help', value='Returns this message.', inline=False)
-        em.add_field(name=f'ping', value='Returns the bot\'s latency.', inline=False)
-        em.add_field(name=f'eval', value='Execute code via an command.', inline=False)
-        em.add_field(name=f'prefix <new-prefix>', value='Change the bot\'s prefix.', inline=False)
-        em.add_field(name=f'finder <name>', value='Finds accounts for the given account name.', inline=False)
-        em.add_field(name=f'ipwhois <ip>', value='Returns information about the given IP address.', inline=False)
-        em.add_field(name=f'whois <domain>', value='Returns the information about the  given domain.', inline=False)
-        em.add_field(name=f"phonewhois <phone-number>", value="Returns information about the given phone number.", inline=False)
-        em.add_field(name=f"checkemail <email>", value="Checks if an email is valid or invalid.", inline=False)
-        em.add_field(name=f"nameservers <domain>", value="Returns the nameservers of the mentioned domain.", inline=False)
+        em.add_field(name=f'Bot', value="`ping` , `eval <code>` , `prefix <prefix>` , `help`", inline=False)
+        em.add_field(name=f'Links', value="`invite` , `website` , `github`", inline=False)
+        em.add_field(name=f'Tools', value="`finder <user>` , `ipwhois <ip>` , `whois <domain>` , `phonewhois` , `checkemail <email>` , `nameservers <domain>` , `domainage <domain>`", inline=False)
         em.set_footer(text=f"This Bot is Made by {AUTHOR} for educational purposes")
         em.set_thumbnail(url="https://images-ext-1.discordapp.net/external/gB4yj0jFMz0c0yHmHTihGRawp_kP65SpLhEbZg5s0So/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/974012262442483752/d56b2bc1efe33b27fbc868c7fad87490.png?width=356&height=356")
         await send(embed=em)

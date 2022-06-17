@@ -7,6 +7,7 @@ from phonenumbers import geocoder, carrier
 from discord.ext import bridge, commands
 import re
 from phonenumbers import timezone
+import datetime
 
 nonsearch = ["192.168.1.1","127.0.0.1","69.69.69.69"]
 
@@ -114,11 +115,23 @@ class info(commands.Cog):
         dom.add_field(name="City", value=f"`{w.city}`", inline=False)
         dom.add_field(name="Address", value=f"`{w.address}`", inline=False)
         dom.add_field(name="Zipcode", value=f"`{w.zipcode}`", inline=False)
-        dom.add_field(name="Created", value=f"`{w.creation_date}`", inline=False)
-        dom.add_field(name="Expiration", value=f"`{w.expiration_date}`", inline=False)
         dom.add_field(name="Note", value=f"**ALL THIS INFORMATION IS PUBLIC AND AVAILABLE ON THE INTERNET** [Wikipedia WHOIS DATABASE](https://en.wikipedia.org/wiki/WHOIS)", inline=False)
         dom.set_footer(text=f"THIS TOOL IS MADE FOR EDUCATIONAL PURPOSES ONLY")
         dom.set_thumbnail(url=f'https://images-ext-1.discordapp.net/external/gB4yj0jFMz0c0yHmHTihGRawp_kP65SpLhEbZg5s0So/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/974012262442483752/d56b2bc1efe33b27fbc868c7fad87490.png?width=356&height=356')
+        await send(embed=dom)
+
+    @bridge.bridge_command()
+    async def domainage(self, ctx, domain):
+        """Get the age of a domain"""
+        try:
+            send = ctx.respond
+        except:
+            send = ctx.reply
+        w = whois.whois(domain)
+        dom = discord.Embed(title=f"{domain}", description="All The Found Public Info", color=discord.Colour.blurple())
+        dom.add_field(name="Domain Name:", value=f"`{w.domain_name}`", inline=False)
+        dom.add_field(name="Created", value=f"`{w.creation_date}`", inline=False)
+        dom.add_field(name="Expiration", value=f"`{w.expiration_date}`", inline=False)
         await send(embed=dom)
 
     @bridge.bridge_command()
